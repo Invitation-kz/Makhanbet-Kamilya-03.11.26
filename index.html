@@ -1,0 +1,1231 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:title" content="Маханбет & Камиля шаңырақ көтеру тойына шақыру!" />
+        <meta property="og:description" content="03.11.2026" />
+        <meta property="og:image" content="photo.jpg" />
+
+        <!-- Шрифт Lora (кириллица + казахские буквы) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&display=swap&subset=cyrillic,cyrillic-ext"
+            rel="stylesheet"
+        />
+
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+        />
+
+        <title>Маханбет & Камиля шаңырақ көтеру тойына шақыру!</title>
+
+        <style>
+            /* ===== Единый шрифт Lora для всей страницы ===== */
+            :root {
+                --font: "Lora", Georgia, "Times New Roman", serif;
+
+                /* Новая палитра */
+                --c-cream: #f6f3ed;
+                --c-dark-blue: #1c3d5a;
+                --c-gold: #c9a96e;
+                --c-white: #ffffff;
+                --c-text: #1c3d5a;
+                --c-paper: #ffffff;
+            }
+
+            html,
+            body,
+            button,
+            input,
+            textarea,
+            label,
+            span,
+            h2,
+            p,
+            a {
+                font-family: var(--font);
+            }
+
+            body {
+                background-color: var(--c-cream);
+            }
+
+            /* ===== Адаптивные контейнеры (как в оригинале) ===== */
+            @media screen and (max-width: 1280px) {
+                div.contentblock {
+                    width: 1200px;
+                }
+            }
+            @media screen and (max-width: 1140px) {
+                div.contentblock {
+                    width: 1024px;
+                }
+            }
+            @media screen and (max-width: 992px) {
+                div.contentblock {
+                    width: 970px;
+                }
+            }
+
+            .conteiner {
+                width: 90%;
+                height: 50%;
+                background: linear-gradient(to top left, var(--c-dark-blue) 0%, #0f2a40 100%);
+                border-radius: 20px;
+            }
+
+            /* ===== Появление блоков при скролле ===== */
+            .element-animation {
+                top: 0px;
+                opacity: 0;
+                position: relative;
+            }
+            .element-animation.element-show {
+                position: relative;
+                top: 20px;
+                opacity: 1;
+                transition-duration: 1.4s;
+            }
+
+            /* ===== Таймер ===== */
+            .countdown-container {
+                margin: 0;
+                font-family: var(--font);
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1;
+                -webkit-text-size-adjust: 80%;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                display: flex;
+                justify-content: center;
+            }
+
+            .countdown-item {
+                position: relative;
+                min-width: 40px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding-bottom: 10px;
+            }
+
+            .countdown-item span {
+                display: block;
+                font-size: 27px;
+                margin-bottom: 1px;
+                color: var(--c-dark-blue);
+                border-radius: 5px;
+                padding: 5px;
+                animation: pulse 1s ease infinite alternate;
+            }
+
+            /* =========================================================
+           ПЛЕЙЕР — стиль адаптирован под новую палитру
+           ========================================================= */
+            .player-wrap {
+                margin-top: 18px;
+                display: flex;
+                justify-content: center;
+            }
+
+            #musicToggle {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                padding: 14px 38px;
+                font-family: var(--font);
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.06em;
+                color: var(--c-cream);
+                background: linear-gradient(160deg, var(--c-dark-blue) 0%, #0f2a40 100%);
+                border: 1px solid var(--c-gold);
+                border-radius: 999px;
+                cursor: pointer;
+                transition:
+                    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                    filter 0.45s ease,
+                    border-color 0.45s ease,
+                    color 0.45s ease;
+                filter: brightness(1);
+            }
+
+            #musicToggle::before {
+                content: "♪";
+                font-size: 20px;
+                color: var(--c-gold);
+                transition: color 0.45s ease;
+            }
+
+            #musicToggle:hover {
+                transform: translateY(-2px) scale(1.02);
+                filter: brightness(1.15);
+                border-color: var(--c-cream);
+                color: var(--c-white);
+            }
+
+            #musicToggle:hover::before {
+                color: var(--c-white);
+            }
+
+            #musicToggle:active {
+                transform: translateY(0) scale(0.98);
+                transition-duration: 0.15s;
+                filter: brightness(0.95);
+            }
+
+            #musicToggle:focus-visible {
+                outline: 2px solid var(--c-gold);
+                outline-offset: 4px;
+            }
+
+            #musicToggle.playing::before {
+                content: "❚❚";
+                font-size: 15px;
+            }
+
+            /* =========================================================
+           ФОРМА ОТВЕТА — цвета адаптированы
+           ========================================================= */
+            #form {
+                display: block;
+                width: 100%;
+                max-width: 380px;
+                margin: 0 auto;
+                padding: 0 24px;
+                box-sizing: border-box;
+                text-align: left;
+            }
+
+            .form-inner {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            .radio-group {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                margin: 0 0 6px;
+            }
+
+            .radio-option {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 13px 18px;
+                background: rgba(255, 255, 255, 0.65);
+                border: 1px solid rgba(28, 61, 90, 0.25);
+                border-radius: 14px;
+                cursor: pointer;
+                transition:
+                    background-color 0.2s ease,
+                    border-color 0.2s ease,
+                    box-shadow 0.2s ease;
+            }
+            .radio-option:hover {
+                border-color: rgba(28, 61, 90, 0.55);
+            }
+            .radio-option:has(input:checked) {
+                background: #ffffff;
+                border-color: var(--c-dark-blue);
+                box-shadow: 0 0 0 1px var(--c-dark-blue);
+            }
+            .radio-option:has(input:focus-visible) {
+                outline: 2px solid var(--c-gold);
+                outline-offset: 2px;
+            }
+            .radio-option input[type="radio"] {
+                flex: none;
+                width: 20px;
+                height: 20px;
+                margin: 0;
+                accent-color: var(--c-dark-blue);
+                cursor: pointer;
+            }
+            .radio-option label {
+                flex: 1;
+                margin: 0;
+                padding: 0;
+                font-size: 18px;
+                line-height: 1.3;
+                color: var(--c-text);
+                text-transform: none;
+                letter-spacing: 0.01em;
+                cursor: pointer;
+            }
+
+            .form-inner textarea {
+                display: block;
+                width: 100%;
+                height: 52px;
+                padding: 13px 18px;
+                margin: 0;
+                box-sizing: border-box;
+                resize: none;
+                font-size: 18px;
+                line-height: 1.3;
+                color: var(--c-text);
+                background-color: var(--c-paper);
+                border: 1px solid rgba(28, 61, 90, 0.35);
+                border-radius: 14px;
+                letter-spacing: 0.01em;
+            }
+            .form-inner textarea::placeholder {
+                color: rgba(28, 61, 90, 0.5);
+            }
+            .form-inner textarea:focus {
+                outline: none;
+                border-color: var(--c-dark-blue);
+                box-shadow: 0 0 0 1px var(--c-dark-blue);
+            }
+
+            .form-inner input[type="submit"] {
+                display: block;
+                width: 100%;
+                height: 52px;
+                margin: 4px 0 0;
+                padding: 0 20px;
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: 0.06em;
+                color: var(--c-cream);
+                background: linear-gradient(160deg, var(--c-dark-blue) 0%, #0f2a40 100%);
+                border: 1px solid var(--c-gold);
+                border-radius: 14px;
+                box-shadow: 0 8px 20px rgba(28, 61, 90, 0.3);
+                cursor: pointer;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease,
+                    opacity 0.2s ease;
+            }
+            .form-inner input[type="submit"]:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 24px rgba(28, 61, 90, 0.4);
+            }
+            .form-inner input[type="submit"]:active {
+                transform: scale(0.98);
+            }
+            .form-inner input[type="submit"]:focus-visible {
+                outline: 2px solid var(--c-gold);
+                outline-offset: 3px;
+            }
+            .form-inner input[type="submit"]:disabled {
+                opacity: 0.6;
+                cursor: default;
+                transform: none;
+            }
+
+            .form-status {
+                min-height: 26px;
+                margin: 2px 0 0;
+                text-align: center;
+                font-size: 18px;
+                color: var(--c-dark-blue);
+                opacity: 0;
+                transform: translateY(6px);
+                transition:
+                    opacity 0.3s ease,
+                    transform 0.3s ease;
+            }
+            .form-status.show {
+                opacity: 1;
+                transform: none;
+            }
+
+            /* ===== Снег/сакура ===== */
+            .sakura {
+                pointer-events: none;
+                position: absolute;
+            }
+            @-webkit-keyframes fall {
+                0% {
+                    opacity: 0.9;
+                    top: 0;
+                }
+                100% {
+                    opacity: 0.2;
+                    top: 100%;
+                }
+            }
+            @keyframes fall {
+                0% {
+                    opacity: 0.9;
+                    top: 0;
+                }
+                100% {
+                    opacity: 0.2;
+                    top: 100%;
+                }
+            }
+            @-webkit-keyframes blow-soft-left {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: -50%;
+                }
+            }
+            @keyframes blow-soft-left {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: -50%;
+                }
+            }
+            @-webkit-keyframes blow-medium-left {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: -100%;
+                }
+            }
+            @keyframes blow-medium-left {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: -100%;
+                }
+            }
+            @-webkit-keyframes blow-soft-right {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: 50%;
+                }
+            }
+            @keyframes blow-soft-right {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: 50%;
+                }
+            }
+            @-webkit-keyframes blow-medium-right {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: 100%;
+                }
+            }
+            @keyframes blow-medium-right {
+                0% {
+                    margin-left: 0;
+                }
+                100% {
+                    margin-left: 100%;
+                }
+            }
+            @-webkit-keyframes sway-0 {
+                0% {
+                    -webkit-transform: rotate(-5deg);
+                    transform: rotate(-5deg);
+                }
+                40% {
+                    -webkit-transform: rotate(28deg);
+                    transform: rotate(28deg);
+                }
+                100% {
+                    -webkit-transform: rotate(3deg);
+                    transform: rotate(3deg);
+                }
+            }
+            @keyframes sway-0 {
+                0% {
+                    -webkit-transform: rotate(-5deg);
+                    transform: rotate(-5deg);
+                }
+                40% {
+                    -webkit-transform: rotate(28deg);
+                    transform: rotate(28deg);
+                }
+                100% {
+                    -webkit-transform: rotate(3deg);
+                    transform: rotate(3deg);
+                }
+            }
+            @-webkit-keyframes sway-1 {
+                0% {
+                    -webkit-transform: rotate(10deg);
+                    transform: rotate(10deg);
+                }
+                40% {
+                    -webkit-transform: rotate(43deg);
+                    transform: rotate(43deg);
+                }
+                100% {
+                    -webkit-transform: rotate(15deg);
+                    transform: rotate(15deg);
+                }
+            }
+            @keyframes sway-1 {
+                0% {
+                    -webkit-transform: rotate(10deg);
+                    transform: rotate(10deg);
+                }
+                40% {
+                    -webkit-transform: rotate(43deg);
+                    transform: rotate(43deg);
+                }
+                100% {
+                    -webkit-transform: rotate(15deg);
+                    transform: rotate(15deg);
+                }
+            }
+            @-webkit-keyframes sway-2 {
+                0% {
+                    -webkit-transform: rotate(15deg);
+                    transform: rotate(15deg);
+                }
+                40% {
+                    -webkit-transform: rotate(56deg);
+                    transform: rotate(56deg);
+                }
+                100% {
+                    -webkit-transform: rotate(22deg);
+                    transform: rotate(22deg);
+                }
+            }
+            @keyframes sway-2 {
+                0% {
+                    -webkit-transform: rotate(15deg);
+                    transform: rotate(15deg);
+                }
+                40% {
+                    -webkit-transform: rotate(56deg);
+                    transform: rotate(56deg);
+                }
+                100% {
+                    -webkit-transform: rotate(22deg);
+                    transform: rotate(22deg);
+                }
+            }
+            @-webkit-keyframes sway-3 {
+                0% {
+                    -webkit-transform: rotate(25deg);
+                    transform: rotate(25deg);
+                }
+                40% {
+                    -webkit-transform: rotate(74deg);
+                    transform: rotate(74deg);
+                }
+                100% {
+                    -webkit-transform: rotate(37deg);
+                    transform: rotate(37deg);
+                }
+            }
+            @keyframes sway-3 {
+                0% {
+                    -webkit-transform: rotate(25deg);
+                    transform: rotate(25deg);
+                }
+                40% {
+                    -webkit-transform: rotate(74deg);
+                    transform: rotate(74deg);
+                }
+                100% {
+                    -webkit-transform: rotate(37deg);
+                    transform: rotate(37deg);
+                }
+            }
+            @-webkit-keyframes sway-4 {
+                0% {
+                    -webkit-transform: rotate(40deg);
+                    transform: rotate(40deg);
+                }
+                40% {
+                    -webkit-transform: rotate(68deg);
+                    transform: rotate(68deg);
+                }
+                100% {
+                    -webkit-transform: rotate(25deg);
+                    transform: rotate(25deg);
+                }
+            }
+            @keyframes sway-4 {
+                0% {
+                    -webkit-transform: rotate(40deg);
+                    transform: rotate(40deg);
+                }
+                40% {
+                    -webkit-transform: rotate(68deg);
+                    transform: rotate(68deg);
+                }
+                100% {
+                    -webkit-transform: rotate(25deg);
+                    transform: rotate(25deg);
+                }
+            }
+            @-webkit-keyframes sway-5 {
+                0% {
+                    -webkit-transform: rotate(50deg);
+                    transform: rotate(50deg);
+                }
+                40% {
+                    -webkit-transform: rotate(78deg);
+                    transform: rotate(78deg);
+                }
+                100% {
+                    -webkit-transform: rotate(40deg);
+                    transform: rotate(40deg);
+                }
+            }
+            @keyframes sway-5 {
+                0% {
+                    -webkit-transform: rotate(50deg);
+                    transform: rotate(50deg);
+                }
+                40% {
+                    -webkit-transform: rotate(78deg);
+                    transform: rotate(78deg);
+                }
+                100% {
+                    -webkit-transform: rotate(40deg);
+                    transform: rotate(40deg);
+                }
+            }
+            @-webkit-keyframes sway-6 {
+                0% {
+                    -webkit-transform: rotate(65deg);
+                    transform: rotate(65deg);
+                }
+                40% {
+                    -webkit-transform: rotate(92deg);
+                    transform: rotate(92deg);
+                }
+                100% {
+                    -webkit-transform: rotate(58deg);
+                    transform: rotate(58deg);
+                }
+            }
+            @keyframes sway-6 {
+                0% {
+                    -webkit-transform: rotate(65deg);
+                    transform: rotate(65deg);
+                }
+                40% {
+                    -webkit-transform: rotate(92deg);
+                    transform: rotate(92deg);
+                }
+                100% {
+                    -webkit-transform: rotate(58deg);
+                    transform: rotate(58deg);
+                }
+            }
+            @-webkit-keyframes sway-7 {
+                0% {
+                    -webkit-transform: rotate(72deg);
+                    transform: rotate(72deg);
+                }
+                40% {
+                    -webkit-transform: rotate(118deg);
+                    transform: rotate(118deg);
+                }
+                100% {
+                    -webkit-transform: rotate(68deg);
+                    transform: rotate(68deg);
+                }
+            }
+            @keyframes sway-7 {
+                0% {
+                    -webkit-transform: rotate(72deg);
+                    transform: rotate(72deg);
+                }
+                40% {
+                    -webkit-transform: rotate(118deg);
+                    transform: rotate(118deg);
+                }
+                100% {
+                    -webkit-transform: rotate(68deg);
+                    transform: rotate(68deg);
+                }
+            }
+            @-webkit-keyframes sway-8 {
+                0% {
+                    -webkit-transform: rotate(94deg);
+                    transform: rotate(94deg);
+                }
+                40% {
+                    -webkit-transform: rotate(136deg);
+                    transform: rotate(136deg);
+                }
+                100% {
+                    -webkit-transform: rotate(82deg);
+                    transform: rotate(82deg);
+                }
+            }
+            @keyframes sway-8 {
+                0% {
+                    -webkit-transform: rotate(94deg);
+                    transform: rotate(94deg);
+                }
+                40% {
+                    -webkit-transform: rotate(136deg);
+                    transform: rotate(136deg);
+                }
+                100% {
+                    -webkit-transform: rotate(82deg);
+                    transform: rotate(82deg);
+                }
+            }
+
+            /* ===== Анимированный самолётик ===== */
+            .planePath {
+                stroke: var(--c-dark-blue);
+                stroke-width: 0.6%;
+                stroke-dasharray: 2% 4%;
+                stroke-linecap: round;
+                fill: none;
+            }
+            .fil1 {
+                fill: var(--c-gold);
+            }
+            .fil2 {
+                fill: var(--c-gold);
+            }
+            .fil3 {
+                fill: var(--c-gold);
+            }
+            .fil4 {
+                fill: var(--c-gold);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Фото 1 -->
+        <img src="photo1.png" style="width: 100%; height: 100%" loading="eager" alt="" />
+
+        <!-- ===== ПЛЕЙЕР ===== -->
+        <center>
+            <div class="player-wrap">
+                <button id="musicToggle" type="button" aria-pressed="false">Әуенді қосу</button>
+            </div>
+        </center>
+        <audio id="backgroundMusic" loop preload="auto">
+            <source src="music.mp3" type="audio/mp3" />
+            Ваш браузер не поддерживает воспроизведение музыки.
+        </audio>
+
+        <!-- Фото 2 -->
+        <center>
+            <div class="element-animation">
+                <img src="photo2.png" style="width: 100%; margin-top: 0px" alt="" />
+            </div>
+        </center>
+
+        <!-- Самолётик -->
+        <svg viewBox="0 0 3387 1270" style="margin-top: 20px">
+            <path
+                id="planePath"
+                class="planePath"
+                d="M-226 626c439,4 636,-213 934,-225 755,-31 602,769 1334,658 562,-86 668,-698 266,-908 -401,-210 -893,189 -632,630 260,441 747,121 1051,91 360,-36 889,179 889,179"
+            />
+            <g id="plane">
+                <polygon class="fil1" points="-141,-10 199,0 -198,-72 -188,-61 -171,-57 -184,-57 " />
+                <polygon class="fil2" points="199,0 -141,-10 -163,63 -123,9 " />
+                <polygon
+                    class="fil3"
+                    points="-95,39 -113,32 -123,9 -163,63 -105,53 -108,45 -87,48 -90,45 -103,41 -94,41 "
+                />
+                <path
+                    class="fil4"
+                    d="M-87 48l-21 -3 3 8 19 -4 -1 -1zm-26 -16l18 7 -2 -1 32 -7 -29 1 11 -4 -24 -1 -16 -18 10 23zm10 9l13 4 -4 -4 -9 0z"
+                />
+                <polygon class="fil1" points="-83,28 -94,32 -65,31 -97,38 -86,49 -67,70 199,0 -123,9 -107,27 " />
+            </g>
+            <animateMotion xlink:href="#plane" dur="5s" repeatCount="indefinite" rotate="auto">
+                <mpath xlink:href="#planePath" />
+            </animateMotion>
+        </svg>
+
+        <!-- Фото 3 -->
+        <center>
+            <div class="element-animation">
+                <img src="photo3.png" style="width: 100%" alt="" />
+            </div>
+        </center>
+
+        <!-- Ссылка на 2GIS -->
+        <div class="element-animation">
+            <center>
+                <div style="margin-top: 5px">
+                    <a href="https://go.2gis.com/nN2oG">
+                        <img src="photo4.png" style="width: 42px; height: 42px; border-radius: 20%" alt="" />
+                    </a>
+                </div>
+            </center>
+        </div>
+
+        <!-- Фото 5 -->
+        <center>
+            <div class="element-animation">
+                <img src="photo5.png" style="width: 40%; margin-top: 60px" alt="" />
+            </div>
+        </center>
+
+        <!-- Фото 6 -->
+        <center>
+            <img src="photo6.png" style="width: 33%; height: 33%; margin-top: 80px" loading="lazy" alt="" />
+        </center>
+
+        <!-- ===== ТАЙМЕР ===== -->
+        <center>
+            <div class="countdown-container" style="margin-top: 10px">
+                <div class="countdown-item">
+                    <span id="days"></span>
+                    <span style="font-size: 13px; text-align: center">күн</span>
+                </div>
+                <h2 style="margin-top: 3px; font-size: 30px">:</h2>
+                <div class="countdown-item">
+                    <span id="hours"></span>
+                    <span style="font-size: 13px; text-align: center">сағат</span>
+                </div>
+                <h2 style="margin-top: 3px; font-size: 30px">:</h2>
+                <div class="countdown-item">
+                    <span id="minutes"></span>
+                    <span style="font-size: 13px; text-align: center">минут</span>
+                </div>
+                <h2 style="margin-top: 3px; font-size: 30px">:</h2>
+                <div class="countdown-item">
+                    <span id="seconds"></span>
+                    <span style="font-size: 13px; text-align: center">секунд</span>
+                </div>
+            </div>
+        </center>
+
+        <!-- ===== ФОРМА ОТВЕТА ===== -->
+        <center style="margin-top: 70px">
+            <form class="transparent" method="post" id="form">
+                <div class="form-inner">
+                    <img src="photo7.png" style="width: 65%; margin-bottom: 10px; align-self: center" alt="" />
+
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="question1_yes" name="name" value="Иә барамын" required />
+                            <label for="question1_yes">Иә барамын</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="question1_no" name="name" value="Бара алмаймын" required />
+                            <label for="question1_no">Бара алмаймын</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="question1_maybe" name="name" value="Әзірге белгісіз" required />
+                            <label for="question1_maybe">Әзірге белгісіз</label>
+                        </div>
+                    </div>
+
+                    <textarea
+                        required
+                        name="message"
+                        maxlength="100"
+                        id="message"
+                        cols="30"
+                        rows="1"
+                        placeholder="Есіміңізді жазыңыз"
+                    ></textarea>
+
+                    <input type="submit" value="Жіберу" />
+                    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+                </div>
+            </form>
+            <img src="photo8.png" style="width: 40%" alt="" />
+        </center>
+
+        <!-- Фото 9 -->
+        <center>
+            <img src="photo9.png" style="width: 80%; margin-top: 50px; margin-bottom: 50px" alt="" />
+        </center>
+
+        <!-- ================= СКРИПТЫ ================= -->
+
+        <!-- 1. ПЛЕЙЕР -->
+        <script>
+            (function () {
+                var audio = document.getElementById("backgroundMusic");
+                var btn = document.getElementById("musicToggle");
+
+                function syncBtn() {
+                    var playing = !audio.paused && !audio.ended;
+                    btn.textContent = playing ? "Әуенді тоқтату" : "Әуенді қосу";
+                    btn.setAttribute("aria-pressed", playing ? "true" : "false");
+                    btn.classList.toggle("playing", playing);
+                }
+
+                function tryPlay() {
+                    var p = audio.play();
+                    if (p && typeof p.catch === "function") p.catch(function () {});
+                }
+
+                btn.addEventListener("click", function () {
+                    if (audio.paused) {
+                        tryPlay();
+                    } else {
+                        audio.pause();
+                    }
+                });
+
+                audio.addEventListener("play", syncBtn);
+                audio.addEventListener("pause", syncBtn);
+                syncBtn();
+
+                // Пытаемся запустить сразу, а если браузер блокирует — при первом касании
+                window.addEventListener("load", function () {
+                    if (audio.paused) tryPlay();
+                });
+                document.addEventListener(
+                    "touchstart",
+                    function () {
+                        if (audio.paused) tryPlay();
+                    },
+                    { once: true },
+                );
+                document.addEventListener(
+                    "click",
+                    function () {
+                        if (audio.paused) tryPlay();
+                    },
+                    { once: true },
+                );
+            })();
+        </script>
+
+        <!-- 2. ОТПРАВКА ФОРМЫ (скрипт из пригласительного Жибек) -->
+        <script>
+            // Ссылка веб-приложения Apps Script (заканчивается на /exec)
+            const URL_APP =
+                "https://script.google.com/macros/s/AKfycbwGQvPQPRg25OJr_fE3aM3YSP9OKSCYyo4CQQ2K_Oen70cNmOgqYrdCYSD5u_qFr13khg/exec";
+
+            const form = document.querySelector("#form");
+            const statusEl = document.querySelector("#formStatus");
+            let statusTimer;
+
+            form.action = URL_APP;
+
+            // Мгновенный ответ гостю
+            function showThanks() {
+                statusEl.textContent = "Жауабыңызға рахмет!";
+                statusEl.classList.add("show");
+                clearTimeout(statusTimer);
+                statusTimer = setTimeout(() => statusEl.classList.remove("show"), 5000);
+            }
+
+            // Отправка в таблицу в фоне (гость её не ждёт), до 3 попыток при сбое сети
+            function sendInBackground(body, attempt = 1) {
+                fetch(URL_APP, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+                    mode: "no-cors",
+                    body: body,
+                    keepalive: true, // запрос дойдёт, даже если гость закроет страницу
+                }).catch(err => {
+                    console.error("Error:", err);
+                    if (attempt < 3) {
+                        setTimeout(() => sendInBackground(body, attempt + 1), 2000 * attempt);
+                    }
+                });
+            }
+
+            form.addEventListener("submit", ev => {
+                ev.preventDefault();
+
+                const checked = form.querySelector("[name=name]:checked");
+                const name = checked ? checked.value : "";
+                const message = form.querySelector("[name=message]").value.trim();
+
+                if (!name || !message) {
+                    alert("Жауабыңызды таңдап, есіміңізді жазыңыз");
+                    return;
+                }
+
+                const body = new URLSearchParams({ name, message }).toString();
+
+                form.reset();
+                showThanks();
+                sendInBackground(body);
+            });
+        </script>
+
+        <!-- 3. ПОЯВЛЕНИЕ БЛОКОВ ПРИ СКРОЛЛЕ -->
+        <script>
+            function onEntry(entry) {
+                entry.forEach(change => {
+                    if (change.isIntersecting) {
+                        change.target.classList.add("element-show");
+                    }
+                });
+            }
+            let options = { threshold: [0.5] };
+            let observer = new IntersectionObserver(onEntry, options);
+            let elements = document.querySelectorAll(".element-animation");
+
+            for (let elm of elements) {
+                observer.observe(elm);
+            }
+        </script>
+
+        <!-- 4. ТАЙМЕР -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                function updateCountdown() {
+                    const endDate = new Date("November 03, 2026 18:00:00").getTime();
+                    const now = new Date().getTime();
+                    const distance = endDate - now;
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.getElementById("days").innerText = days;
+                    document.getElementById("hours").innerText = hours;
+                    document.getElementById("minutes").innerText = minutes;
+                    document.getElementById("seconds").innerText = seconds;
+
+                    if (distance < 0) {
+                        clearInterval(timerInterval);
+                        document.getElementById("days").innerText = "00";
+                        document.getElementById("hours").innerText = "00";
+                        document.getElementById("minutes").innerText = "00";
+                        document.getElementById("seconds").innerText = "00";
+                    }
+                }
+
+                const timerInterval = setInterval(updateCountdown, 1000);
+                updateCountdown();
+            });
+        </script>
+
+        <!-- 5. САКУРА (снег) — цвета адаптированы -->
+        <script>
+            "use strict";
+
+            var Sakura = function Sakura(selector, options) {
+                var _this = this;
+
+                if (typeof selector === "undefined") {
+                    throw new Error("No selector present. Define an element.");
+                }
+
+                this.el = document.querySelector(selector);
+
+                var defaults = {
+                    className: "sakura",
+                    fallSpeed: 1,
+                    maxSize: 14,
+                    minSize: 10,
+                    delay: 300,
+                    colors: [
+                        {
+                            gradientColorStart: "rgba(255, 183, 197, 0.9)",
+                            gradientColorEnd: "rgba(255, 197, 208, 0.9)",
+                            gradientColorDegree: 120,
+                        },
+                    ],
+                };
+
+                var extend = function extend(originalObj, newObj) {
+                    Object.keys(originalObj).forEach(function (key) {
+                        if (newObj && Object.prototype.hasOwnProperty.call(newObj, key)) {
+                            var origin = originalObj;
+                            origin[key] = newObj[key];
+                        }
+                    });
+                    return originalObj;
+                };
+
+                this.settings = extend(defaults, options);
+                this.el.style.overflowX = "hidden";
+
+                function randomArrayElem(arr) {
+                    return arr[Math.floor(Math.random() * arr.length)];
+                }
+
+                function randomInt(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+
+                var prefixes = ["webkit", "moz", "MS", "o", ""];
+
+                function PrefixedEvent(element, type, callback) {
+                    for (var p = 0; p < prefixes.length; p += 1) {
+                        var animType = type;
+                        if (!prefixes[p]) {
+                            animType = type.toLowerCase();
+                        }
+                        element.addEventListener(prefixes[p] + animType, callback, false);
+                    }
+                }
+
+                function elementInViewport(el) {
+                    var rect = el.getBoundingClientRect();
+                    return (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                }
+
+                this.createPetal = function () {
+                    if (_this.el.dataset.sakuraAnimId) {
+                        setTimeout(function () {
+                            window.requestAnimationFrame(_this.createPetal);
+                        }, _this.settings.delay);
+                    }
+
+                    var animationNames = {
+                        blowAnimations: ["blow-soft-left", "blow-medium-left", "blow-soft-right", "blow-medium-right"],
+                        swayAnimations: [
+                            "sway-0",
+                            "sway-1",
+                            "sway-2",
+                            "sway-3",
+                            "sway-4",
+                            "sway-5",
+                            "sway-6",
+                            "sway-7",
+                            "sway-8",
+                        ],
+                    };
+
+                    var blowAnimation = randomArrayElem(animationNames.blowAnimations);
+                    var swayAnimation = randomArrayElem(animationNames.swayAnimations);
+
+                    var fallTime =
+                        (document.documentElement.clientHeight * 0.007 + Math.round(Math.random() * 5)) *
+                        _this.settings.fallSpeed;
+
+                    var animationsArr = [
+                        "fall ".concat(fallTime, "s linear 0s 1"),
+                        "".concat(
+                            blowAnimation,
+                            " ",
+                            (fallTime > 30 ? fallTime : 30) - 20 + randomInt(0, 20),
+                            "s linear 0s infinite",
+                        ),
+                        "".concat(swayAnimation, " ", randomInt(2, 4), "s linear 0s infinite"),
+                    ];
+                    var animations = animationsArr.join(", ");
+
+                    var petal = document.createElement("div");
+                    petal.classList.add(_this.settings.className);
+
+                    var height = randomInt(_this.settings.minSize, _this.settings.maxSize);
+                    var width = height - Math.floor(randomInt(0, _this.settings.minSize) / 3);
+
+                    var color = randomArrayElem(_this.settings.colors);
+
+                    petal.style.background = "linear-gradient("
+                        .concat(color.gradientColorDegree, "deg, ")
+                        .concat(color.gradientColorStart, ", ")
+                        .concat(color.gradientColorEnd, ")");
+                    petal.style.webkitAnimation = animations;
+                    petal.style.animation = animations;
+                    petal.style.borderRadius = ""
+                        .concat(
+                            randomInt(_this.settings.maxSize, _this.settings.maxSize + Math.floor(Math.random() * 10)),
+                            "px ",
+                        )
+                        .concat(randomInt(1, Math.floor(width / 4)), "px");
+                    petal.style.height = "".concat(height, "px");
+                    petal.style.left = "".concat(Math.random() * document.documentElement.clientWidth - 100, "px");
+                    petal.style.marginTop = "".concat(-(Math.floor(Math.random() * 20) + 15), "px");
+                    petal.style.width = "".concat(width, "px");
+
+                    PrefixedEvent(petal, "AnimationEnd", function () {
+                        if (!elementInViewport(petal)) {
+                            petal.remove();
+                        }
+                    });
+
+                    PrefixedEvent(petal, "AnimationIteration", function () {
+                        if (!elementInViewport(petal)) {
+                            petal.remove();
+                        }
+                    });
+
+                    _this.el.appendChild(petal);
+                };
+
+                this.el.setAttribute("data-sakura-anim-id", window.requestAnimationFrame(this.createPetal));
+            };
+
+            Sakura.prototype.start = function () {
+                var animId = this.el.dataset.sakuraAnimId;
+                if (!animId) {
+                    this.el.setAttribute("data-sakura-anim-id", window.requestAnimationFrame(this.createPetal));
+                } else {
+                    throw new Error("Sakura is already running.");
+                }
+            };
+
+            Sakura.prototype.stop = function () {
+                var _this2 = this;
+                var graceful = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+                var animId = this.el.dataset.sakuraAnimId;
+
+                if (animId) {
+                    window.cancelAnimationFrame(animId);
+                    this.el.setAttribute("data-sakura-anim-id", "");
+                }
+
+                if (!graceful) {
+                    setTimeout(function () {
+                        var petals = document.getElementsByClassName(_this2.settings.className);
+                        while (petals.length > 0) {
+                            petals[0].parentNode.removeChild(petals[0]);
+                        }
+                    }, this.settings.delay + 50);
+                }
+            };
+        </script>
+
+        <script>
+            var sakura = new Sakura("body", {
+                colors: [
+                    {
+                        gradientColorStart: "rgba(246, 243, 237, 0.9)",
+                        gradientColorEnd: "rgba(246, 243, 237, 0.9)",
+                        gradientColorDegree: 120,
+                    },
+                    {
+                        gradientColorStart: "rgba(201, 169, 110, 0.9)",
+                        gradientColorEnd: "rgba(201, 169, 110, 0.9)",
+                        gradientColorDegree: 120,
+                    },
+                    {
+                        gradientColorStart: "rgba(28, 61, 90, 0.7)",
+                        gradientColorEnd: "rgba(28, 61, 90, 0.7)",
+                        gradientColorDegree: 120,
+                    },
+                ],
+                delay: 40,
+            });
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+            async
+        ></script>
+    </body>
+</html>
